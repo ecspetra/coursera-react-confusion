@@ -32,21 +32,19 @@ class DishDetail extends Component {
     renderComments(comments) {
 
         if (comments != null) {
-            console.log(comments);
             return (
                 <div className="col-12 col-md-5 m-1">
                     <h4>Comments</h4>
                     {comments.map((item, index) => (
                         <div key={index}>
                             <p>{item.comment}</p>
-                            <p>-- {item.author} {item.date}</p>
+                            <p>-- {item.author}, {new Date(item.date).toDateString().split(' ').slice(1).join(' ')}</p>
                         </div>
                     ))}
                 </div>
             )
         }
         else {
-            console.log("oops");
             return(
                 <div></div>
             );
