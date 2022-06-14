@@ -15,10 +15,10 @@ class DishDetail extends Component {
         if (dish != null) {
             return (
                 <Card>
-                    <CardImg top src={dish.image} alt={dish.name}/>
+                    <CardImg top src={this.props.dish.image} alt={this.props.dish.name}/>
                     <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
+                        <CardTitle>{this.props.dish.name}</CardTitle>
+                        <CardText>{this.props.dish.description}</CardText>
                     </CardBody>
                 </Card>
             );
@@ -38,7 +38,7 @@ class DishDetail extends Component {
                     {comments.map((item, index) => (
                         <div key={index}>
                             <p>{item.comment}</p>
-                            <p>-- {item.author}, {new Date(item.date).toDateString().split(' ').slice(1).join(' ')}</p>
+                            <p>-- {item.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(item.date)))}</p>
                         </div>
                     ))}
                 </div>
@@ -53,11 +53,13 @@ class DishDetail extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.props.selectedDish)}
+            <div className="container">
+                <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderDish(this.props.selectedDish)}
+                    </div>
+                    {this.props.selectedDish && this.renderComments(this.props.dish.comments)}
                 </div>
-                {this.props.selectedDish && this.renderComments(this.props.selectedDish.comments)}
             </div>
         );
     }
