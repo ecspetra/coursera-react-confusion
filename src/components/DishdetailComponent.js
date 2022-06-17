@@ -3,7 +3,7 @@ import { Card, CardImg, CardText, CardBody,
     CardTitle } from 'reactstrap';
 
 function RenderDish(dish) {
-    if (dish != null) {
+    if (dish !== null) {
         return (
             <Card>
                 <CardImg top src={dish.image} alt={dish.name}/>
@@ -49,9 +49,9 @@ const  DishDetail = (props) => {
         <div className="container">
             <div className="row">
                 <div className="col-12 col-md-5 m-1">
-                    {props.selectedDish && RenderDish(props.dish)}
+                    {props.selectedDish !== null && RenderDish(props.dish)}
                 </div>
-                {props.selectedDish && RenderComments(props.dish.comments)}
+                {props.selectedDish !== null && RenderComments(props.dish.comments)}
             </div>
         </div>
     );
