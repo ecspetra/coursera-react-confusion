@@ -26,7 +26,7 @@ function RenderComments({comments}) {
 
     if (comments != null) {
         return (
-            <div className="col-12 col-md-5 m-1">
+            <div>
                 <h4>Comments</h4>
                 {comments.map((item, index) => (
                     <div key={index}>
