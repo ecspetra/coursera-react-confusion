@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import CommentForm from "./CommentForm";
 
 function RenderDish({dish}) {
     if (dish !== null) {
@@ -34,6 +35,7 @@ function RenderComments({comments}) {
                         <p>-- {item.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(item.date)))}</p>
                     </div>
                 ))}
+                <CommentForm />
             </div>
         )
     }
