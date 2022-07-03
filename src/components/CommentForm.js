@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader, Row} from "reactstrap";
-import {Control, Errors, LocalForm} from "react-redux-form";
+import {Control, Errors, LocalForm, actions} from "react-redux-form";
 
 class CommentForm extends Component {
     constructor(props) {
@@ -47,6 +47,8 @@ class CommentForm extends Component {
     handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
+        this.props.resetFeedbackForm();
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
         // event.preventDefault();
     }
 
@@ -59,7 +61,7 @@ class CommentForm extends Component {
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
-                        <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                        <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Col md={12}>
                                     <label htmlFor="rating">Rating</label>
@@ -124,7 +126,7 @@ class CommentForm extends Component {
                                 </Col>
                             </Row>
                             <Button type="submit" value="submit" color="primary">Submit</Button>
-                        </LocalForm>
+                        </Form>
                     </ModalBody>
                 </Modal>
                 <Button outline onClick={this.toggleModal}><span className="fa fa-pencil fa-lg"></span> Submit Comment</Button>
